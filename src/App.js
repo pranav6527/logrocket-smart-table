@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import axios from "axios";
+import CsvReader from "./CsvReader";
 
 import Table from "./Table";
 import "./App.css";
@@ -26,25 +27,25 @@ function App() {
         columns: [
           {
             Header: "Name",
-            accessor: "show.name"
+            accessor: "show.name",
           },
           {
             Header: "Type",
-            accessor: "show.type"
-          }
-        ]
+            accessor: "show.type",
+          },
+        ],
       },
       {
         Header: "Details",
         columns: [
           {
             Header: "Language",
-            accessor: "show.language"
+            accessor: "show.language",
           },
           {
             Header: "Genre(s)",
             accessor: "show.genres",
-            Cell: ({ cell: { value } }) => <Genres values={value} />
+            Cell: ({ cell: { value } }) => <Genres values={value} />,
           },
           {
             Header: "Runtime",
@@ -58,14 +59,14 @@ function App() {
                   {min > 0 ? `${min} min${min > 1 ? "s" : ""}` : ""}
                 </>
               );
-            }
+            },
           },
           {
             Header: "Status",
-            accessor: "show.status"
-          }
-        ]
-      }
+            accessor: "show.status",
+          },
+        ],
+      },
     ],
     []
   );
@@ -81,6 +82,7 @@ function App() {
 
   return (
     <div className="App">
+      <CsvReader />
       <Table columns={columns} data={data} />
     </div>
   );
